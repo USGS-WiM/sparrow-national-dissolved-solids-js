@@ -1600,7 +1600,7 @@ require([
                 if ($("#st-select")[0].selectedIndex > 0) {
                     return "ST_COMID";
                 } else {
-                    return "COMID";
+                    return "MRB_ID";
                 }
             case 1:
                 if ($("#st-select")[0].selectedIndex > 0) {
@@ -1662,7 +1662,7 @@ require([
             $.each(obj, function(i, attribute) {
                 //don't try to sum up an strings or ID numbers
                 //UPDATE important! -- if catchments ID field is returned make sure the correctly named field is in the catch below.
-                if (jQuery.type(attribute) !== "string" && i !== "COMID") {
+                if (jQuery.type(attribute) !== "string" && i !== "MRB_ID") {
                     // (dont need this because ST_COMID is a string) || i !== "ST_COMID") ){
                     sum += attribute;
                 }
@@ -1698,7 +1698,7 @@ require([
                     //catchments only
                     data.push({
                         y: feature[value],
-                        id: feature["COMID"] || feature["ST_COMID"]
+                        id: feature["MRB_ID"] || feature["ST_COMID"]
                     }); // TMR ADDED
                 } else {
                     data.push(feature[value]);
