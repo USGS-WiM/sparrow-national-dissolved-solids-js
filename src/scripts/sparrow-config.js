@@ -28,9 +28,9 @@ var initQueryParams = ['ST', 'GP3', 'GP2', 'GP1' ]; //used to query for the AOI 
 
 var groupResultsLabels = {
     a : "Catchment ID",
-    b : "HUC8",
+    b : "HUC2",
     c : "HUC4",
-    d : "HUC2",
+    d : "HUC8",
     e : "State"
 }
 
