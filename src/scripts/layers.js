@@ -80,7 +80,7 @@ require([
                         includeLegend: true
                     }
                 },
-                "Nitrogen Calibration Sites": {
+                /*"Nitrogen Calibration Sites": {
                     url: serviceBaseURL,
                     visibleLayers: [19],
                     options: {
@@ -96,7 +96,7 @@ require([
                         hasZoomto: false,
                         includeLegend: false
                     }
-                }
+                }*/
             }
         },
         {
