@@ -1598,7 +1598,7 @@ require([
         switch (selectedIndex) {
             case 0:
                 if ($("#st-select")[0].selectedIndex > 0) {
-                    return "ST_COMID";
+                    return "ST_MRB_ID";
                 } else {
                     return "MRB_ID";
                 }

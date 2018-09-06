@@ -507,7 +507,7 @@ var Catchments_st = [
         field: "ACCL", 
         name: catchmentDefinitions.accl, 
         chartOutfields: [
-            { attribute: "ST_COMID", label: catchmentDefinitions.st_comid },
+            { attribute: "ST_MRB_ID", label: catchmentDefinitions.st_comid },
             { attribute: "ACCL_S1", label: catchmentDefinitions.accl + ' ' + phosphorusSourceDefinitions.s1},
             { attribute: "ACCL_S2", label: catchmentDefinitions.accl + ' ' + phosphorusSourceDefinitions.s2},
             { attribute: "ACCL_S3", label: catchmentDefinitions.accl + ' ' + phosphorusSourceDefinitions.s3},
@@ -521,7 +521,7 @@ var Catchments_st = [
         field: "INCL", 
         name: catchmentDefinitions.incl, 
         chartOutfields: [
-            { attribute: "ST_COMID", label: catchmentDefinitions.st_comid }, 
+            { attribute: "ST_MRB_ID", label: catchmentDefinitions.st_comid }, 
             { attribute: "INCL_S1", label: catchmentDefinitions.incl + ' ' + phosphorusSourceDefinitions.s1},
             { attribute: "INCL_S2", label: catchmentDefinitions.incl + ' ' + phosphorusSourceDefinitions.s2},
             { attribute: "INCL_S3", label: catchmentDefinitions.incl + ' ' + phosphorusSourceDefinitions.s3},
@@ -535,7 +535,7 @@ var Catchments_st = [
         field: "ACCY", 
         name: catchmentDefinitions.accy,
         chartOutfields: [
-            { attribute: "ST_COMID", label: catchmentDefinitions.st_comid }, 
+            { attribute: "ST_MRB_ID", label: catchmentDefinitions.st_comid }, 
             { attribute: "ACCY_S1", label: catchmentDefinitions.accy + ' ' + phosphorusSourceDefinitions.s1},
             { attribute: "ACCY_S2", label: catchmentDefinitions.accy + ' ' + phosphorusSourceDefinitions.s2},
             { attribute: "ACCY_S3", label: catchmentDefinitions.accy + ' ' + phosphorusSourceDefinitions.s3},
@@ -549,7 +549,7 @@ var Catchments_st = [
         field: "INCY", 
         name: catchmentDefinitions.incy,
         chartOutfields: [
-            { attribute: "ST_COMID", label: catchmentDefinitions.st_comid }, 
+            { attribute: "ST_MRB_ID", label: catchmentDefinitions.st_comid }, 
             { attribute: "INCY_S1", label: catchmentDefinitions.incy + ' ' + phosphorusSourceDefinitions.s1},
             { attribute: "INCY_S2", label: catchmentDefinitions.incy + ' ' + phosphorusSourceDefinitions.s2},
             { attribute: "INCY_S3", label: catchmentDefinitions.incy + ' ' + phosphorusSourceDefinitions.s3},
@@ -563,7 +563,7 @@ var Catchments_st = [
         field: "DACCL", 
         name: catchmentDefinitions.daccl,
         chartOutfields: [
-            { attribute: "ST_COMID", label: catchmentDefinitions.st_comid }, 
+            { attribute: "ST_MRB_ID", label: catchmentDefinitions.st_comid }, 
             { attribute: "DACCL_S1", label: catchmentDefinitions.daccl + ' ' + phosphorusSourceDefinitions.s1},
             { attribute: "DACCL_S2", label: catchmentDefinitions.daccl + ' ' + phosphorusSourceDefinitions.s2},
             { attribute: "DACCL_S3", label: catchmentDefinitions.daccl + ' ' + phosphorusSourceDefinitions.s3},
@@ -577,7 +577,7 @@ var Catchments_st = [
         field: "DACCY", 
         name: catchmentDefinitions.daccy,
         chartOutfields: [
-            { attribute: "ST_COMID", label: catchmentDefinitions.st_comid }, 
+            { attribute: "ST_MRB_ID", label: catchmentDefinitions.st_comid }, 
             { attribute: "DACCY_S1", label: catchmentDefinitions.daccy + ' ' + phosphorusSourceDefinitions.s1},
             { attribute: "DACCY_S2", label: catchmentDefinitions.daccy + ' ' + phosphorusSourceDefinitions.s2},
             { attribute: "DACCY_S3", label: catchmentDefinitions.daccy + ' ' + phosphorusSourceDefinitions.s3},
@@ -591,7 +591,7 @@ var Catchments_st = [
         field: "DINCL", 
         name: catchmentDefinitions.dincl, 
         chartOutfields: [
-            { attribute: "ST_COMID", label: catchmentDefinitions.st_comid },
+            { attribute: "ST_MRB_ID", label: catchmentDefinitions.st_comid },
             { attribute: "DINCL_S1", label: catchmentDefinitions.dincl + ' ' + phosphorusSourceDefinitions.s1},
             { attribute: "DINCL_S2", label: catchmentDefinitions.dincl + ' ' + phosphorusSourceDefinitions.s2},
             { attribute: "DINCL_S3", label: catchmentDefinitions.dincl + ' ' + phosphorusSourceDefinitions.s3},
@@ -605,7 +605,7 @@ var Catchments_st = [
         field: "DINCY", 
         name: catchmentDefinitions.dincy,
         chartOutfields: [
-            { attribute: "ST_COMID", label: catchmentDefinitions.st_comid },
+            { attribute: "ST_MRB_ID", label: catchmentDefinitions.st_comid },
             { attribute: "DINCY_S1", label: catchmentDefinitions.dincy + ' ' + phosphorusSourceDefinitions.s1},
             { attribute: "DINCY_S2", label: catchmentDefinitions.dincy + ' ' + phosphorusSourceDefinitions.s2},
             { attribute: "DINCY_S3", label: catchmentDefinitions.dincy + ' ' + phosphorusSourceDefinitions.s3},
