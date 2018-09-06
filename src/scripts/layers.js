@@ -62,9 +62,9 @@ require([
             showGroupHeading: true,
             includeInLayerList: true,
             layers: {
-                "Phosphorus Calibration Sites": {
+                "Calibration Sites": {
                     url: serviceBaseURL,
-                    visibleLayers: [18],
+                    visibleLayers: [9],
                     options: {
                         id: "phosCalibration",
                         opacity: 0.85,
@@ -79,24 +79,7 @@ require([
                         hasZoomto: false,
                         includeLegend: true
                     }
-                },
-                /*"Nitrogen Calibration Sites": {
-                    url: serviceBaseURL,
-                    visibleLayers: [19],
-                    options: {
-                        id: "nitroCalibration",
-                        visible: false,
-                        opacity: 0.85
-                    },
-                    wimOptions: {
-                        type: "layer",
-                        layerType: "agisDynamic",
-                        includeInLayerList: true,
-                        hasOpacitySlider: true,
-                        hasZoomto: false,
-                        includeLegend: false
-                    }
-                }*/
+                }
             }
         },
         {
@@ -104,7 +87,7 @@ require([
             showGroupHeading: true,
             includeInLayerList: true,
             layers: {
-                "Eastern U.S. Streams": {
+                /* "Eastern U.S. Streams": {
                     url: serviceBaseURL,
                     visibleLayers: [21],
                     options: {
@@ -169,7 +152,7 @@ require([
                         hasZoomto: false,
                         includeLegend: false
                     }
-                },
+                }, */
                 "Land Use 2002": {
                     url:
                         "https://gis.wim.usgs.gov/arcgis/rest/services/SWTrends/lu2002_100515_test/ImageServer",
