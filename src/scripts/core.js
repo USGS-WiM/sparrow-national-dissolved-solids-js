@@ -1598,7 +1598,7 @@ require([
         switch (selectedIndex) {
             case 0:
                 if ($("#st-select")[0].selectedIndex > 0) {
-                    return "ST_COMID";
+                    return "ST_MRB_ID";
                 } else {
                     return "MRB_ID";
                 }
@@ -2346,7 +2346,11 @@ require([
             htmlArr.push("<tr id='row" + rowI + "'>");
             $.each(feature, function(key, value) {
                 if (key == "total") {
-                    htmlArr.splice(-2, 0, "<td>" + value + "</td>");
+                    if ($("#groupResultsSelect")[0].selectedIndex == 0){
+                        htmlArr.splice(-2, 0, "<td>" + value + "</td>");
+                    } else{
+                        htmlArr.splice(-1, 0, "<td>" + value + "</td>");
+                    }
                 } else {
                     htmlArr.push("<td>" + value + "</td>");
                 }
