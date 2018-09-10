@@ -558,7 +558,9 @@ function generateRenderer() {
                         $("#toast_body").html(
                             "Cannot show chart for " +
                                 app.polygonResponseCount +
-                                " features. <br/>Please narrow Area of Interest or Group Results to less than " + chartFeatureMax + " features and try again."
+                                " features. <br/>Please narrow Area of Interest or Group Results to less than " +
+                                chartFeatureMax +
+                                " features and try again."
                         );
                         $("#toast-fixed").fadeIn();
                         setTimeout(function() {
