@@ -1002,7 +1002,8 @@ require([
             case 0:
                 //none are chosen, get everything
                 //reset the selects
-                $(".aoiSelect").selectpicker("val", "");
+                //$(".aoiSelect").selectpicker("val", ""); //this hack is no longer necessary when using > v1.13.x of boostrap-select
+                $(".aoiSelect").selectpicker("deselectAll"); //deselectAll was fixed in 1.13.x version of bootstrap select
                 app.clearLayerDefObj();
                 break;
         }
@@ -1121,7 +1122,6 @@ require([
                         if (app.userSelectedDispFieldName == "") {
                             app.userSelectedDispFieldName = respObj.displayFieldName;
                         }
-                        
                     } else {
                         //removing
                         var symbolToRemove = app.map.graphics.graphics.filter(function(g) {
@@ -1131,16 +1131,13 @@ require([
                         //remove this from array of responses
                         app.userSelectedShapes.splice(app.userSelectedShapes.indexOf(respValue), 1);
                         // if all selected have been removed, change Show Chart button back to say All
-                        
                     }
                 });
                 if (app.userSelectedShapes.length == 0 && app.userSelectedShapes.length < chartFeatureMax) {
                     $("#chartButton").html("Show Chart");
-                } else{
+                } else {
                     $("#chartButton").html("Show Chart for selection");
                 }
-
- 
             } else {
                 var calibrationInfoWindow = false;
                 app.map.graphics.clear();
@@ -2211,7 +2208,6 @@ require([
 
                                     graphicsQuery.where = fieldName + "= '" + category + "'";
 
-
                                     queryTask.execute(graphicsQuery, responseHandler);
 
                                     function responseHandler(response) {
@@ -2346,9 +2342,9 @@ require([
             htmlArr.push("<tr id='row" + rowI + "'>");
             $.each(feature, function(key, value) {
                 if (key == "total") {
-                    if ($("#groupResultsSelect")[0].selectedIndex == 0){
+                    if ($("#groupResultsSelect")[0].selectedIndex == 0) {
                         htmlArr.splice(-2, 0, "<td>" + value + "</td>");
-                    } else{
+                    } else {
                         htmlArr.splice(-1, 0, "<td>" + value + "</td>");
                     }
                 } else {
@@ -2392,7 +2388,6 @@ require([
         graphicsQuery.outFields = [fieldName];
         graphicsQuery.where = fieldName + "= '" + category + "'";
         graphicsQuery.maxAllowableOffset = 2000;
-
 
         queryTask.execute(graphicsQuery, responseHandler);
 

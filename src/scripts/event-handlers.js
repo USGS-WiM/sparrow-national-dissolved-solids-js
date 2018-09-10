@@ -135,7 +135,8 @@ function loadEventHandlers() {
         }
 
         //reset the selects
-        $(".aoiSelect").selectpicker("val", ""); // 'hack' because selectpicker('deselectAll') method only works when bootstrap-select is open.
+        //$(".aoiSelect").selectpicker("val", ""); //this hack is no longer necessary when using > v1.13.x of boostrap-select
+        $(".aoiSelect").selectpicker("deselectAll"); //deselectAll was fixed in 1.13.x version of bootstrap select
 
         generateRenderer();
 
