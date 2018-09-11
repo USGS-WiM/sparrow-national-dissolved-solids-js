@@ -430,9 +430,9 @@ function getExtraOutfields(outfieldsArr, sparrowLayerId) {
         case 9:
             //CATCHMENTS
             //finalChartArr.push("PNAME");
-            finalChartArr.push("AREASQKM");
-            finalChartArr.push("DIVDASQKM");
-            finalChartArr.push("COMID");
+            finalChartArr.push("DEMIAREA");
+            finalChartArr.push("DEMTAREA");
+            finalChartArr.push("MRB_ID");
             break;
         case 1:
         case 10:
@@ -457,9 +457,9 @@ function getExtraOutfields(outfieldsArr, sparrowLayerId) {
         case 5:
         case 14:
             //Catchments w/ state divisions
-            finalChartArr.push("AREASQKM");
-            finalChartArr.push("AREASQKM");
-            finalChartArr.push("ST_COMID");
+            finalChartArr.push("DEMIAREA");
+            finalChartArr.push("DEMTAREA");
+            finalChartArr.push("ST_MRB_ID");
             break;
         case 6:
         case 15:
@@ -558,7 +558,9 @@ function generateRenderer() {
                         $("#toast_body").html(
                             "Cannot show chart for " +
                                 app.polygonResponseCount +
-                                " features. <br/>Please narrow Area of Interest or Group Results to less than " + chartFeatureMax + " features and try again."
+                                " features. <br/>Please narrow Area of Interest or Group Results to less than " +
+                                chartFeatureMax +
+                                " features and try again."
                         );
                         $("#toast-fixed").fadeIn();
                         setTimeout(function() {
