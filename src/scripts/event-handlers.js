@@ -42,6 +42,7 @@ function loadEventHandlers() {
 
     /* AOI EVENTS */
     $(".aoiSelect").on("change", AOIChange);
+    
 
     /* GROUP RESULTS (AGGREGATE LAYER) EVENTS */
     //set initial Displayed Metric options
@@ -115,11 +116,11 @@ function loadEventHandlers() {
     /* CLEAR AOI BUTTON EVENT */
     $("#clearAOIButton").on("click", function() {
         //if resetting to Catchment layer, disable HUC12 Dropdown
-        if ($("#groupResultsSelect")[0].value == "Catchment") {
+         /* if ($("#groupResultsSelect")[0].value == "Catchment") {
             $("#grp3-select").attr("disabled", "disabled");
             $("#grp3-select").addClass("disabled");
             $("#grp3-select").selectpicker("refresh");
-        }
+        }  */
         $("#page-loader").show();
         var sparrowId = app.map.getLayer("SparrowRanking").visibleLayers[0];
 
@@ -137,6 +138,7 @@ function loadEventHandlers() {
         //reset the selects
         //$(".aoiSelect").selectpicker("val", ""); //this hack is no longer necessary when using > v1.13.x of boostrap-select
         $(".aoiSelect").selectpicker("deselectAll"); //deselectAll was fixed in 1.13.x version of bootstrap select
+        
 
         generateRenderer();
 
@@ -193,17 +195,17 @@ function loadEventHandlers() {
         $(".grp3-warning").remove();
 
         //call to check if user has selected a value in the AOI
-        var AOIhasValue = function(){
+        function AOIhasValue() {
             if ($("#grp1-select")[0].value !== ""){
                 return true;
             }
-            if ($("#grp2-select")[0].value !== "" ){
+            else if ($("#grp2-select")[0].value !== "" ){
                 return true;
             }
-            if ($("#grp3-select")[0].value !== "" ){
+            else if ($("#grp3-select")[0].value !== "" ){
                 return true;
             }
-            if ($("#st-select")[0].value !== "" ){
+            else if ($("#st-select")[0].value !== "" ){
                 return true
             }
             else{
@@ -248,6 +250,7 @@ function loadEventHandlers() {
                 //AOI HUC8(GP3) AND HUC2(GP1) enabled
                 $("#grp1-select").selectpicker("refresh");
                 $("#grp2-select").selectpicker("refresh");
+                //$("#grp3-select").selectpicker("refresh");
                 break;
             case 2: //GP2
                 /***AOI logic (disable HUC8(GP3) & clear value if any) ***/
