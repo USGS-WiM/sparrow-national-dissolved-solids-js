@@ -243,25 +243,25 @@ require([
             this.disabled = false;
         });
         if (layerDefObj.AOI3) {
-            // if HUC8 has values NO: [2] Tributary,[3] Main River Basin, [4] State Group By
+            // if HUC8 has values NO: [2] HUC4,[3] HUC2, [4] State Group By
             var disForHUC = document.getElementById("groupResultsSelect").getElementsByTagName("option");
-            disForHUC[2].disabled = true; // trib
-            disForHUC[3].disabled = true; // main river basin
+            disForHUC[2].disabled = true; // huc4
+            disForHUC[3].disabled = true; // huc2
             disForHUC[4].disabled = true; // state
             $("#groupResultsSelect").selectpicker("render");
         }
         if (layerDefObj.AOI2) {
-            // if Trib has value NO: [1] HUC8, [3] Main River Basin, [4] State Group By
+            // if Trib has value NO: [1] HUC8, [3] HUC2, [4] State Group By
             var disForTrib = document.getElementById("groupResultsSelect").getElementsByTagName("option");
-            disForTrib[1].disabled = true; // trib
-            disForTrib[3].disabled = true; // main river basin
+            disForTrib[1].disabled = true; // huc8
+            disForTrib[3].disabled = true; // huc2
             disForTrib[4].disabled = true; // state
             $("#groupResultsSelect").selectpicker("render");
         }
         if (layerDefObj.AOI1) {
             // if Main River Basin has value NO: [4] State Group By
             var disForMRB = document.getElementById("groupResultsSelect").getElementsByTagName("option");
-            disForMRB[4].disabled = true; // main river basin
+            disForMRB[4].disabled = true; // state
             $("#groupResultsSelect").selectpicker("render");
         }
         app.updateAOIs(newObj.selectedId);
@@ -1002,8 +1002,7 @@ require([
             case 0:
                 //none are chosen, get everything
                 //reset the selects
-                //$(".aoiSelect").selectpicker("val", ""); //this hack is no longer necessary when using > v1.13.x of boostrap-select
-                $(".aoiSelect").selectpicker("deselectAll"); //deselectAll was fixed in 1.13.x version of bootstrap select
+                $(".aoiSelect").selectpicker("val", "");
                 app.clearLayerDefObj();
                 break;
         }
@@ -1094,7 +1093,7 @@ require([
 
         app.identifyParams.geometry = evt.mapPoint;
         app.identifyParams.mapExtent = app.map.extent;
-        app.identifyParams.tolerance = 1;
+        app.identifyParams.tolerance = 8;
         app.identifyParams.maxAllowableOffset = 200;
 
         //Deferred callback
@@ -1122,6 +1121,7 @@ require([
                         if (app.userSelectedDispFieldName == "") {
                             app.userSelectedDispFieldName = respObj.displayFieldName;
                         }
+                        
                     } else {
                         //removing
                         var symbolToRemove = app.map.graphics.graphics.filter(function(g) {
@@ -1131,13 +1131,16 @@ require([
                         //remove this from array of responses
                         app.userSelectedShapes.splice(app.userSelectedShapes.indexOf(respValue), 1);
                         // if all selected have been removed, change Show Chart button back to say All
+                        
                     }
                 });
                 if (app.userSelectedShapes.length == 0 && app.userSelectedShapes.length < chartFeatureMax) {
                     $("#chartButton").html("Show Chart");
-                } else {
+                } else{
                     $("#chartButton").html("Show Chart for selection");
                 }
+
+ 
             } else {
                 var calibrationInfoWindow = false;
                 app.map.graphics.clear();
@@ -2208,6 +2211,7 @@ require([
 
                                     graphicsQuery.where = fieldName + "= '" + category + "'";
 
+
                                     queryTask.execute(graphicsQuery, responseHandler);
 
                                     function responseHandler(response) {
@@ -2342,9 +2346,9 @@ require([
             htmlArr.push("<tr id='row" + rowI + "'>");
             $.each(feature, function(key, value) {
                 if (key == "total") {
-                    if ($("#groupResultsSelect")[0].selectedIndex == 0) {
+                    if ($("#groupResultsSelect")[0].selectedIndex == 0){
                         htmlArr.splice(-2, 0, "<td>" + value + "</td>");
-                    } else {
+                    } else{
                         htmlArr.splice(-1, 0, "<td>" + value + "</td>");
                     }
                 } else {
@@ -2388,6 +2392,7 @@ require([
         graphicsQuery.outFields = [fieldName];
         graphicsQuery.where = fieldName + "= '" + category + "'";
         graphicsQuery.maxAllowableOffset = 2000;
+
 
         queryTask.execute(graphicsQuery, responseHandler);
 

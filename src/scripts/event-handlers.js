@@ -182,43 +182,74 @@ function loadEventHandlers() {
     $(".nonAOISelect").on("change", function() {
         $("#page-loader").fadeIn();
         //first clear all disabled's and warnings
-        $("#grp1-select").removeClass("disabled"); //River Basin
+        $("#grp1-select").removeClass("disabled"); //HUC2
         $("#grp1-select").removeAttr("disabled");
         $(".grp1-warning").remove();
-        $("#grp2-select").removeClass("disabled"); //huc8
+        $("#grp2-select").removeClass("disabled"); //HUC4
         $("#grp2-select").removeAttr("disabled");
         $(".grp2-warning").remove();
-        $("#grp3-select").removeClass("disabled"); //huc12
+        $("#grp3-select").removeClass("disabled"); //HUC8
         $("#grp3-select").removeAttr("disabled");
         $(".grp3-warning").remove();
 
+        //call to check if user has selected a value in the AOI
+        var AOIhasValue = function(){
+            if ($("#grp1-select")[0].value !== ""){
+                return true;
+            }
+            if ($("#grp2-select")[0].value !== "" ){
+                return true;
+            }
+            if ($("#grp3-select")[0].value !== "" ){
+                return true;
+            }
+            if ($("#st-select")[0].value !== "" ){
+                return true
+            }
+            else{
+                return false;
+            }
+        }
+
         switch ($("#groupResultsSelect")[0].selectedIndex) {
+
+
             case 0: //Catchment
-                //DISABLE HUC12 @ full extent because it has too many options
-                $("#grp3-select").attr("disabled", "disabled");
-                $("#grp3-select").addClass("disabled");
-                $("#grp3-select").selectpicker("refresh");
+                //if no AOIs are selected don't load all the huc8 dropdowns for the sake of app performance
+                if( AOIhasValue() === false ){
+                    $("#grp3-select").attr("disabled", "disabled");
+                    $("#grp3-select").addClass("disabled");
+                    $("#grp3-select").selectpicker("refresh");
+                } else{
+                    $("#grp3-select").selectpicker("refresh");
+                } 
+                
 
                 //AOI HUC8(GP3) AND Main River basin(GP1) enabled
                 $("#grp1-select").selectpicker("refresh");
                 $("#grp2-select").selectpicker("refresh");
+                //$("#grp3-select").selectpicker("refresh");
                 break;
-            case 1: //huc12
+            case 1: //GP1
                 /***AOI Logic (Disable Tributary(GP2) & clear value if any) ***/
                 //Tributary
                 if (app.getLayerDefObj().AOI2) {
                     clearAOIandAppendWarning("grp2-warning", "HUC8", "HUC12", "#grp2-select", "AOI2");
                 }
-                //DISABLE HUC12 @ full extent because it has too many options
-                $("#grp3-select").attr("disabled", "disabled");
-                $("#grp3-select").addClass("disabled");
-                $("#grp3-select").selectpicker("refresh");
+                //DISABLE HUC8 @ full extent because it has too many options
+                if( AOIhasValue() === false ){
+                    $("#grp3-select").attr("disabled", "disabled");
+                    $("#grp3-select").addClass("disabled");
+                    $("#grp3-select").selectpicker("refresh");
+                } else{
+                    $("#grp3-select").selectpicker("refresh");
+                } 
 
-                //AOI HUC8(GP3) AND Main River basin(GP1) enabled
+                //AOI HUC8(GP3) AND HUC2(GP1) enabled
                 $("#grp1-select").selectpicker("refresh");
                 $("#grp2-select").selectpicker("refresh");
                 break;
-            case 2: //huc8
+            case 2: //GP2
                 /***AOI logic (disable HUC8(GP3) & clear value if any) ***/
                 //huc8
                 if (app.getLayerDefObj().AOI3) {
