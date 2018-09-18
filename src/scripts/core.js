@@ -1093,7 +1093,7 @@ require([
 
         app.identifyParams.geometry = evt.mapPoint;
         app.identifyParams.mapExtent = app.map.extent;
-        app.identifyParams.tolerance = 8;
+        app.identifyParams.tolerance = 3;
         app.identifyParams.maxAllowableOffset = 200;
 
         //Deferred callback
