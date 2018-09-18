@@ -64,7 +64,7 @@ require([
             layers: {
                 "Phosphorus Calibration Sites": {
                     url: serviceBaseURL,
-                    visibleLayers: [18],
+                    visibleLayers: [9],
                     options: {
                         id: "phosCalibration",
                         opacity: 0.85,

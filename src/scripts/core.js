@@ -1149,30 +1149,30 @@ require([
                     $.each(response, function(index, responseObj) {
                         //UPDATE important! -- make sure that layerIds in 'if' statements below match calibration sites layers in the REST services.
                         //Phosphorus Calibration Site InfoWindow
-                        if (responseObj.layerId === 18) {
+                        if (responseObj.layerId === 9) {
                             var model = "Phosphorus";
                             var calibrationTemplate = new esri.InfoTemplate();
                             calibrationTemplate.setTitle("SPARROW " + model + " Calibration Site");
                             //UPDATE important! make sure the field names match what is in the REST layer
                             calibrationTemplate.setContent(
                                 "<div><b>Station Name:</b> " +
-                                    responseObj.feature.attributes.NAME +
+                                    responseObj.feature.attributes.SNAME +
                                     "</div><br>" +
                                     "<div><b>Station ID:</b> </b>" +
-                                    responseObj.feature.attributes.STATION_ID +
+                                    responseObj.feature.attributes.STAID +
                                     "</div><br>" +
                                     "<div><b>SPARROW Reach ID: </b>" +
-                                    responseObj.feature.attributes.COMID +
+                                    responseObj.feature.attributes.REACH_NUM +
                                     "</div><br>" +
                                     "<div><b>Fluxmaster Load " +
                                     chartUnits +
                                     ": </b>" +
-                                    responseObj.feature.attributes.FLUXMASTER +
+                                     /*responseObj.feature.attributes.FLUXMASTER +
                                     "</div><br>" +
                                     "<div><b>SPARROW Estimated Load " +
                                     chartUnits +
                                     ": </b>" +
-                                    responseObj.feature.attributes.SPARROW_ES +
+                                    responseObj.feature.attributes.SPARROW_ES +*/
                                     "</div><br>"
                             );
 
@@ -1186,7 +1186,7 @@ require([
 
                         //UPDATE important! -- make sure that layerIds in 'if' statements below match calibration sites layers in the REST services
                         //Nitrogen Calibration Site InfoWindow
-                        if (responseObj.layerId === 19) {
+                       /* if (responseObj.layerId === 9) {
                             var modelN = "Nitrogen";
                             var calibrationTemplateN = new esri.InfoTemplate();
                             calibrationTemplateN.setTitle("SPARROW " + modelN + " Calibration Site");
@@ -1211,7 +1211,7 @@ require([
                                     ": </b>" +
                                     responseObj.feature.attributes.SPARROW_ES +
                                     "</div><br>"
-                            );
+                            ); 
 
                             var graphic = new Graphic();
                             var feature = graphic;
@@ -1219,11 +1219,11 @@ require([
                             app.map.infoWindow.setFeatures([responseObj.feature]);
                             app.map.infoWindow.show(evt.mapPoint);
                             calibrationInfoWindow = true;
-                        }
+                        }*/
                     });
 
                     //handle map click for Sparrow Data layer
-                    if (calibrationInfoWindow != true) {
+                    if (calibrationInfoWindow = true) {
                         // highlight the first poly clicked
                         var selectedSymbol = new SimpleLineSymbol(
                             SimpleLineSymbol.STYLE_SOLID,
@@ -1246,7 +1246,7 @@ require([
                         app.createChartQuery(chartQueryArg);
                     }
                 }
-            } // end else
+            } // end else 
         }); //END deferred callback
     }; //END executeIdentifyTask();
 
