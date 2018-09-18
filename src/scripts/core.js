@@ -243,25 +243,25 @@ require([
             this.disabled = false;
         });
         if (layerDefObj.AOI3) {
-            // if HUC8 has values NO: [2] Tributary,[3] Main River Basin, [4] State Group By
+            // if HUC8 has values NO: [2] HUC4,[3] HUC2, [4] State Group By
             var disForHUC = document.getElementById("groupResultsSelect").getElementsByTagName("option");
-            disForHUC[2].disabled = true; // trib
-            disForHUC[3].disabled = true; // main river basin
+            disForHUC[2].disabled = true; // huc4
+            disForHUC[3].disabled = true; // huc2
             disForHUC[4].disabled = true; // state
             $("#groupResultsSelect").selectpicker("render");
         }
         if (layerDefObj.AOI2) {
-            // if Trib has value NO: [1] HUC8, [3] Main River Basin, [4] State Group By
+            // if Trib has value NO: [1] HUC8, [3] HUC2, [4] State Group By
             var disForTrib = document.getElementById("groupResultsSelect").getElementsByTagName("option");
-            disForTrib[1].disabled = true; // trib
-            disForTrib[3].disabled = true; // main river basin
+            disForTrib[1].disabled = true; // huc8
+            disForTrib[3].disabled = true; // huc2
             disForTrib[4].disabled = true; // state
             $("#groupResultsSelect").selectpicker("render");
         }
         if (layerDefObj.AOI1) {
             // if Main River Basin has value NO: [4] State Group By
             var disForMRB = document.getElementById("groupResultsSelect").getElementsByTagName("option");
-            disForMRB[4].disabled = true; // main river basin
+            disForMRB[4].disabled = true; // state
             $("#groupResultsSelect").selectpicker("render");
         }
         app.updateAOIs(newObj.selectedId);
@@ -1093,7 +1093,7 @@ require([
 
         app.identifyParams.geometry = evt.mapPoint;
         app.identifyParams.mapExtent = app.map.extent;
-        app.identifyParams.tolerance = 1;
+        app.identifyParams.tolerance = 8;
         app.identifyParams.maxAllowableOffset = 200;
 
         //Deferred callback
