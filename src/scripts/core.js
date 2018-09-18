@@ -1453,11 +1453,11 @@ require([
         var grp1Options = getUniqueArray(AllAOIOptions, "GP1");
         var STOptions = getUniqueArray(AllAOIOptions, "ST");
 
-        /*  $.each(grp3Options, function(index, option){
+        /* $.each(grp3Options, function(index, option){
             if (option != " "){
                 $('#grp3-select').append(new Option(option));
             }
-        }); */
+        });  */
         $.each(grp2Options, function(index, option) {
             if (option != " ") {
                 $("#grp2-select").append(new Option(option));
