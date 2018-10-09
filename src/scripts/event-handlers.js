@@ -195,7 +195,7 @@ function loadEventHandlers() {
         $(".grp3-warning").remove();
 
         //call to check if user has selected a value in the AOI
-        function AOIhasValue() {
+        var AOIhasValue = function() {
             if ($("#grp1-select")[0].value !== ""){
                 return true;
             }
