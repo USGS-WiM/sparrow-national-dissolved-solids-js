@@ -6,7 +6,7 @@ THIS CONFIG REMOVES CATCHMENT AND AGGREGATE LABELS FROM THE CHARTOUTFIELS OBJECT
 Also removes PNAME and replaces it with COMID and ST_COMID
 */
 
-var appTitle = "National Dissolved Solids Sources, Loads, Yields, and Concentrations";
+var appTitle = "About Dissolved Solids Sources, Loads, Yields, and Concentrations For the Conterminous U.S.";
 var appVersion = "v0.9.0";
 
 var serviceBaseURL = "https://sparrowprod.wim.usgs.gov/arcgis/rest/services/Sparrow_National_Dissolved_Solids/SPARROW_NDS_WIM/MapServer/"; //important! UPDATE rest service URL
@@ -119,7 +119,7 @@ var phosphorusSourceDefinitions = {
     s2: "Water (submerged lithologies)",
     s3: "Cultivated Land",
     s4: "Pasture Land",
-    s5: "Urban Lane ",
+    s5: "Urban Land ",
     s6: "Road Salt",
     s7: "Non US inflow"
 };
