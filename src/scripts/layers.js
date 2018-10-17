@@ -37,7 +37,7 @@ require([
             showGroupHeading: true,
             includeInLayerList: true,
             layers: {
-                "SPARROW Model Results": {
+                "SPARROW Model Results": { 
                     url: serviceBaseURL,
                     visibleLayers: [sparrowOverlay],
                     options: {
