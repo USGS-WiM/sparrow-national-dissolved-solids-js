@@ -140,7 +140,7 @@ var phosphorusSourceDefinitions = {
     1. each color corresponds with the order of SourceDefinitions objects above  
     2. there the number of hex colors matches the number of nutrient sources
 **/
-var phosColors = ["#BF0000", "#A2EB85", "#663100", "#FFEC99", "#FFCCFF", "#0070C0","#EABD19"];
+var phosColors = ["#BF0000", "#A2EB85", "#663100", "#FFEC99", "#FFCCFF", "#0070C0","#006800"];
 var nitroColors = ["#BF0000", "#FFCCFF", "#663100", "#FFEC99", "#A2EB85", "#00a900", "#006800", "#0070C0"];
 
 /***-----BEGIN PHOSPHORUS LAYER GROUPS --------***/
