@@ -616,9 +616,9 @@ function generateRenderer() {
         //different ramps for phos/nitro
         if ($(".radio input[type='radio']:checked")[0].id == "radio1") {
             //phos brown schema
-            colorRamp.fromColor = new Color.fromHex("#FFF1DC");
-            colorRamp.toColor = new Color.fromHex("#632E0E");
-        } else {
+            colorRamp.fromColor = new Color.fromHex("#FFE5B4");
+            colorRamp.toColor = new Color.fromHex("#B24903");
+        }  else {
             //nitro green schema
             colorRamp.fromColor = new Color.fromHex("#F5EBB8");
             colorRamp.toColor = new Color.fromHex("#004120");
