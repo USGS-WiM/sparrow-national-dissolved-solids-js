@@ -525,7 +525,7 @@ function generateRenderer() {
             app.layerDef = "1=1";
         }
         //UPDATE important!  url must match serviceBaseURL in config
-        app.Url = serviceBaseURL + sparrowId;
+        app.Url = serviceBaseURL + sparrowId; 
 
         // get polygon count for global storage
         var query = new Query();
