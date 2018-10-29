@@ -32,7 +32,7 @@ require([
     layerOptions.scaleSymbols = true;
 
     allLayers = [
-        {
+     {
             groupHeading: "Nutrient Model",
             showGroupHeading: true,
             includeInLayerList: true,
@@ -45,8 +45,8 @@ require([
                         opacity: 0.75,
                         visible: true,
                         layerDrawingOptions: layerOptions
-                    },
-                    wimOptions: {
+                    }, 
+                   wimOptions: {
                         type: "layer",
                         layerType: "agisDynamic",
                         includeInLayerList: true,
@@ -55,7 +55,7 @@ require([
                         includeLegend: false
                     }
                 }
-            }
+           }
         },
         {
             groupHeading: "Model Calibration Sites",
