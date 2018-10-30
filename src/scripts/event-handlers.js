@@ -116,11 +116,10 @@ function loadEventHandlers() {
     /* CLEAR AOI BUTTON EVENT */
     $("#clearAOIButton").on("click", function() {
         //if resetting to Catchment layer, disable HUC12 Dropdown
-         /* if ($("#groupResultsSelect")[0].value == "Catchment") {
-            $("#grp3-select").attr("disabled", "disabled");
-            $("#grp3-select").addClass("disabled");
-            $("#grp3-select").selectpicker("refresh");
-        }  */
+        $("#grp3-select").attr("disabled", "disabled");
+        $("#grp3-select").addClass("disabled");
+        $("#grp3-select").selectpicker("refresh");
+        
         $("#page-loader").show();
         var sparrowId = app.map.getLayer("SparrowRanking").visibleLayers[0];
 
@@ -136,8 +135,8 @@ function loadEventHandlers() {
         }
 
         //reset the selects
-        //$(".aoiSelect").selectpicker("val", ""); //this hack is no longer necessary when using > v1.13.x of boostrap-select
-        $(".aoiSelect").selectpicker("deselectAll"); //deselectAll was fixed in 1.13.x version of bootstrap select
+        $(".aoiSelect").selectpicker("val", ""); //this hack is no longer necessary when using > v1.13.x of boostrap-select
+        //$(".aoiSelect").selectpicker("deselectAll"); //deselectAll was fixed in 1.13.x version of bootstrap select
         
 
         generateRenderer();
@@ -235,9 +234,9 @@ function loadEventHandlers() {
             case 1: //GP1
                 /***AOI Logic (Disable Tributary(GP2) & clear value if any) ***/
                 //Tributary
-                if (app.getLayerDefObj().AOI2) {
+               /*  if (app.getLayerDefObj().AOI2) {
                     clearAOIandAppendWarning("grp2-warning", "HUC8", "HUC12", "#grp2-select", "AOI2");
-                }
+                } */
                 //DISABLE HUC8 @ full extent because it has too many options
                 if( AOIhasValue() === false ){
                     $("#grp3-select").attr("disabled", "disabled");
@@ -255,9 +254,9 @@ function loadEventHandlers() {
             case 2: //GP2
                 /***AOI logic (disable HUC8(GP3) & clear value if any) ***/
                 //huc8
-                if (app.getLayerDefObj().AOI3) {
+                /* if (app.getLayerDefObj().AOI3) {
                     clearAOIandAppendWarning("grp3-warning", "HUC12", "HUC8", "#grp3-select", "AOI3");
-                }
+                } */
                 //disable the HUC8 dropdown
                 $("#grp3-select").attr("disabled", "disabled"); //huc8
                 $("#grp3-select").addClass("disabled");
@@ -270,9 +269,9 @@ function loadEventHandlers() {
             case 3: //River Basin
                 /*** AOI logic (disable Tributary(GP2)  AND HUC8(GP3) & clear values if any) ***/
                 //Tributary
-                if (app.getLayerDefObj().AOI2) {
+                /* if (app.getLayerDefObj().AOI2) {
                     clearAOIandAppendWarning("grp2-warning", "HUC8", "River Basin", "#grp2-select", "AOI2");
-                }
+                } */
                 $("#grp2-select").attr("disabled", "disabled"); //Tributary
                 $("#grp2-select").addClass("disabled");
                 $("#grp2-select").selectpicker("refresh");
@@ -280,9 +279,9 @@ function loadEventHandlers() {
                 // AIO Main River Basin (GP1) enabled
                 $("#grp1-select").selectpicker("refresh");
                 //huc8
-                if (app.getLayerDefObj().AOI3) {
+                /* if (app.getLayerDefObj().AOI3) {
                     clearAOIandAppendWarning("grp3-warning", "HUC12", "River Basin", "#grp3-select", "AOI3");
-                }
+                } */
                 $("#grp3-select").attr("disabled", "disabled"); //huc8
                 $("#grp3-select").addClass("disabled");
                 $("#grp3-select").selectpicker("refresh");
@@ -290,24 +289,24 @@ function loadEventHandlers() {
             case 4: //STATE
                 /***AOI logic (disable GP1(Main Riv. Basin) AND GP2(Trib.) AND GP3(HUC8) & clear values if any) ***/
                 //Main Riv Basin
-                if (app.getLayerDefObj().AOI1) {
+                /* if (app.getLayerDefObj().AOI1) {
                     clearAOIandAppendWarning("grp1-warning", "River Basin", "State", "#grp1-select", "AOI1");
-                }
+                } */
                 $("#grp1-select").attr("disabled", "disabled"); //independent watersheds
                 $("#grp1-select").addClass("disabled");
                 $("#grp1-select").selectpicker("refresh");
 
                 //Tributary
-                if (app.getLayerDefObj().AOI2) {
+               /*  if (app.getLayerDefObj().AOI2) {
                     clearAOIandAppendWarning("grp2-warning", "HUC8", "State", "#grp2-select", "AOI2");
-                }
+                } */
                 $("#grp2-select").attr("disabled", "disabled"); //huc8
                 $("#grp2-select").addClass("disabled");
                 $("#grp2-select").selectpicker("refresh");
 
-                if (app.getLayerDefObj().AOI3) {
+                /* if (app.getLayerDefObj().AOI3) {
                     clearAOIandAppendWarning("grp3-warning", "HUC12", "State", "#grp3-select", "AOI3");
-                }
+                } */
                 $("#grp3-select").attr("disabled", "disabled"); //huc8
                 $("#grp3-select").addClass("disabled");
                 $("#grp3-select").selectpicker("refresh");
