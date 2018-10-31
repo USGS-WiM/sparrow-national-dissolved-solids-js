@@ -2555,7 +2555,7 @@ require([
                 wimOptions.hasOpacitySlider !== undefined &&
                 wimOptions.hasOpacitySlider == true &&
                 wimOptions.hasZoomto !== undefined &&
-                wimOptions.hasZoomto == true
+                wimOptions.hasZoomto == true 
             ) {
                 //opacity icon and zoomto icon; button not selected
                 var button = $(
@@ -2572,7 +2572,7 @@ require([
                 wimOptions.hasOpacitySlider !== undefined &&
                 wimOptions.hasOpacitySlider == true &&
                 wimOptions.hasZoomto !== undefined &&
-                wimOptions.hasZoomto == false
+                wimOptions.hasZoomto == false 
             ) {
                 //opacity icon, NO zoomTo icon
                 var button = $(
@@ -2582,14 +2582,14 @@ require([
                         layerName +
                         '<span id="opacity' +
                         camelize(layerName) +
-                        '" class="glyphspan glyphicon glyphicon-adjust pull-right opacity"></span></button></div>'
+                        '" class="glyphspan glyphicon glyphicon-adjust pull-right opacity"></span></button></div>' 
                 );
             } else if (
                 !layer.visible &&
                 wimOptions.hasOpacitySlider !== undefined &&
                 wimOptions.hasOpacitySlider == true &&
                 wimOptions.hasZoomto !== undefined &&
-                wimOptions.hasZoomto == false
+                wimOptions.hasZoomto == false 
             ) {
                 //opacity icon, NO zoomTo icon
                 var button = $(
@@ -2614,6 +2614,7 @@ require([
 
                 e.preventDefault();
                 e.stopPropagation();
+                e.targetid()!="SparrowRanking";
 
                 $("#" + camelize(layerName)).toggle();
 
