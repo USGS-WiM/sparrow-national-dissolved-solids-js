@@ -226,7 +226,7 @@ function AOIChange(e) {
     var selectValue = e.currentTarget.value;
     var groupResultsIndex = $("#groupResultsSelect")[0].selectedIndex;
 
-    if ($("#groupResultsSelect")[0].value == "HUC8" || $("#groupResultsSelect")[0].value == "Catchment") {
+    if ($("#groupResultsSelect")[0].selectedIndex == 1 || $("#groupResultsSelect")[0].selectedIndex == 0) {
         //ENABLE huc12 dropdown
         $("#grp3-select").removeClass("disabled"); //huc12
         $("#grp3-select").removeAttr("disabled");
