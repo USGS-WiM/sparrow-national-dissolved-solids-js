@@ -789,6 +789,11 @@ table.hover-highlight tbody > tr.even:hover > td {
   max-height: 90vh;
 }
 
+/*MapLayer-Nutirent Model*/
+.lyrTogDiv #SparrowRanking{
+    cursor: not-allowed !important;
+}
+
 /*New close button*/
 #chartClose b{
   /*font-size: 0;
