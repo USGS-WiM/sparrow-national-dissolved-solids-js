@@ -333,8 +333,8 @@ require([
             }
         }
         //return them sorted
-        //var collator = new Intl.Collator(undefined, {numeric: true, sensitivity: 'base'}).compare;
-        return uniqueArray.sort();
+        var collator = new Intl.Collator(undefined, {numeric: true, sensitivity: 'base'}).compare;
+        return uniqueArray.sort(collator);
     };
 
     // called from app.updateAOIs when all for aois are selected. the one just updated is passed in and returns array of info needed several times
