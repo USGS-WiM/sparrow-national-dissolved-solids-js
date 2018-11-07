@@ -1835,7 +1835,7 @@ require([
 
         //Important! UPDATE if nutrient Models change names.
         if ($('.radio input[type="radio"]:checked')[0].id == "radio1") {
-            $("#chartWindowPanelTitle").text("Total Phosphorus " + labelySelect());
+            $("#chartWindowPanelTitle").text("Dissolved Solids " + labelySelect());
             //console.log("Radio One");
         } else {
             $("#chartWindowPanelTitle").text("Total Nitrogen " + labelySelect());
