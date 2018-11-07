@@ -33,7 +33,7 @@ require([
 
     allLayers = [
      {
-            groupHeading: "Nutrient Model",
+            groupHeading: "SPARROW Model",
             showGroupHeading: true,
             includeInLayerList: true,
             layers: {
