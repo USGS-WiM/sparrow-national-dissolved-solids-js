@@ -398,7 +398,7 @@ function getTableFields(headerKeysArr, sparrowLayerId) {
 function getLegendLabels(sparrowLayerId) {
     var label = "";
     var configObject = app.getLayerConfigObject(sparrowLayerId);
-    var nutrientModel = sparrowLayerId < 8 ? "Total Phosphorus" : "Total Nitrogen"; //if layer id is less than 8 prefix with Phosphorus, else Nitrogen
+    var nutrientModel = sparrowLayerId < 8 ? "Dissolved Solids" : "Total Nitrogen"; //if layer id is less than 8 prefix with Phosphorus, else Nitrogen
     $.each(configObject, function(index, item) {
         if ($("#displayedMetricSelect").val() == item.field) {
             label = item.name;
