@@ -36,7 +36,7 @@ var groupResultsLabels = {
 
 //download locations
 var phosphorusShapefileURL =
-    "https://sparrow.wim.usgs.gov/national-dissolved-solids/downloads/national-dissolved-solids_phosphorus_shapefiles.zip";
+    "https://sparrow.wim.usgs.gov/national-dissolved-solids/downloads/national-dissolved-solids_shapefile.zip";
 //var nitrogenShapefileURL = 'https://sparrow.wim.usgs.gov/east-us/downloads/east_us_shapefiles_nitrogen.zip';
 var phosCalibrationURL =
     "https://sparrow.wim.usgs.gov/national-dissolved-solids/downloads/national-dissolved-solids_calibration_sites.zip";
