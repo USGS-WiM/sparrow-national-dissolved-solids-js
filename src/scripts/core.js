@@ -333,6 +333,7 @@ require([
             }
         }
         //return them sorted
+        //var collator = new Intl.Collator(undefined, {numeric: true, sensitivity: 'base'}).compare;
         return uniqueArray.sort();
     };
 
