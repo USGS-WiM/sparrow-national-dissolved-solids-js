@@ -2612,7 +2612,8 @@ require([
             //click listener for regular
             button.click(function(e) {
                 //toggle checkmark
-                if (e.target.id != "SparrowRanking"){
+                //do not execute layer toggle for clicks on sparrowRanking checkbox OR label
+                if (e.currentTarget.firstElementChild.id != "SparrowRanking"){
                     $(this)
                         .find("i.glyphspan")
                         .toggleClass("fa-check-square-o fa-square-o");

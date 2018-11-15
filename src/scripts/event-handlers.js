@@ -100,9 +100,12 @@ function loadEventHandlers() {
     /*END GROUP RESULTS (AGGREGATE LAYER) EVENTS */
 
     /*METRIC EVENTS*/
-    $("#displayedMetricSelect").on("changed.bs.select", function(e) {
+    $("#displayedMetricSelect").on("changed.bs.select", function(e, clickedIndex) {
         $("#page-loader").fadeIn();
-        generateRenderer();
+        if (clickedIndex != undefined){
+            generateRenderer();
+        }
+        
 
         /* if( $("#chartWindowDiv").css("visibility") == "visible" ) {
             $("#toast_title").html("Loading...");
