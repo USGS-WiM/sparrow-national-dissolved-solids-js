@@ -249,7 +249,7 @@ require([
             disForHUC[3].disabled = true; // huc2
             disForHUC[4].disabled = true; // state
             $("#groupResultsSelect").selectpicker("render");
-            app.updateAOIs(newObj.selectedId);
+
         }
         if (layerDefObj.AOI2) {
             // if Trib has value NO: [1] HUC8, [3] HUC2, [4] State Group By
@@ -258,16 +258,16 @@ require([
             disForTrib[3].disabled = true; // huc2
             disForTrib[4].disabled = true; // state
             $("#groupResultsSelect").selectpicker("render");
-            app.updateAOIs(newObj.selectedId);
+
         }
         if (layerDefObj.AOI1) {
             // if Main River Basin has value NO: [4] State Group By
             var disForMRB = document.getElementById("groupResultsSelect").getElementsByTagName("option");
             disForMRB[4].disabled = true; // state
             $("#groupResultsSelect").selectpicker("render");
-            app.updateAOIs(newObj.selectedId);
+
         }
-        
+        app.updateAOIs(newObj.selectedId);
     };
 
     app.getLayerDefObj = function() {

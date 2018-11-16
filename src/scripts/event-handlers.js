@@ -213,11 +213,9 @@ function loadEventHandlers() {
             else{
                 return false;
             }
-        }
+        } 
 
         switch ($("#groupResultsSelect")[0].selectedIndex) {
-
-
             case 0: //Catchment
                 //if no AOIs are selected don't load all the huc8 dropdowns for the sake of app performance
                 if( AOIhasValue() === false ){
