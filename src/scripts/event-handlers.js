@@ -100,7 +100,7 @@ function loadEventHandlers() {
     /*END GROUP RESULTS (AGGREGATE LAYER) EVENTS */
 
     /*METRIC EVENTS*/
-    $("#displayedMetricSelect").on("changed.bs.select", function(e, clickedIndex) {
+    $("#displayedMetricSelect").on("changed.bs.select", function(e, clickedIndex, isSelected) {
         $("#page-loader").fadeIn();
         if (clickedIndex != undefined){
             generateRenderer();

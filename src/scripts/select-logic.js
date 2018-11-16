@@ -91,8 +91,9 @@ function populateMetricOptions(selectedIndex) {
         .remove();
     $.each(metricOptions, function(index, value) {
         $("#displayedMetricSelect").append(new Option(value.name, value.field));
-    });
         $("#displayedMetricSelect").selectpicker("refresh");
+    });
+        
 
     //find previously Selected metric value
     var selectedMetric = function(previousFieldLabel, metricOptions) {
