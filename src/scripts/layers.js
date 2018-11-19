@@ -87,7 +87,7 @@ require([
             showGroupHeading: true,
             includeInLayerList: true,
             layers: {
-                /* "Eastern U.S. Streams": {
+                "Eastern U.S. Streams": {
                     url: serviceBaseURL,
                     visibleLayers: [21],
                     options: {
@@ -152,7 +152,7 @@ require([
                         hasZoomto: false,
                         includeLegend: false
                     }
-                }, */
+                },
                 "Land Use 2002": {
                     url:
                         "https://gis.wim.usgs.gov/arcgis/rest/services/SWTrends/lu2002_100515_test/ImageServer",
