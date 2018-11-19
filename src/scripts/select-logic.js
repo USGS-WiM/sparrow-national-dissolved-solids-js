@@ -91,8 +91,9 @@ function populateMetricOptions(selectedIndex) {
         .remove();
     $.each(metricOptions, function(index, value) {
         $("#displayedMetricSelect").append(new Option(value.name, value.field));
-        $("#displayedMetricSelect").selectpicker("refresh");
+        
     });
+        $("#displayedMetricSelect").selectpicker("refresh");
         
 
     //find previously Selected metric value
@@ -244,7 +245,7 @@ function AOIChange(e) {
         //if(app.map.getLayer('SparrowRanking').visibleLayers[0]){
         populateMetricOptions($("#groupResultsSelect")[0].selectedIndex);
         setAggregateGroup(groupResultsIndex, $(".radio input[type='radio']:checked")[0].id);
-        var dontCallRenderer = true;
+        
     }
 
     //only update if there's a value to update to (clearing selected values depending on Group Results by selections)
@@ -254,11 +255,8 @@ function AOIChange(e) {
 
     setLayerDefs();
 
-    if (dontCallRenderer == undefined || dontCallRenderer != true){
-        generateRenderer();
-    }
-    
-
+    generateRenderer();
+   
     if ($("#chartWindowDiv").css("visibility") == "visible") {
         $("#toast_title").html("Loading...");
         $("#toast_body").html("Chart updating");

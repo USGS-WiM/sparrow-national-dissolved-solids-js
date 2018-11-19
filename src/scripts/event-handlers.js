@@ -100,11 +100,10 @@ function loadEventHandlers() {
     /*END GROUP RESULTS (AGGREGATE LAYER) EVENTS */
 
     /*METRIC EVENTS*/
-    $("#displayedMetricSelect").on("changed.bs.select", function(e, clickedIndex, isSelected) {
+    $("#displayedMetricSelect").on("changed.bs.select", function(e) {
         $("#page-loader").fadeIn();
-        if (clickedIndex != undefined){
-            generateRenderer();
-        }
+        generateRenderer();
+
         
 
         /* if( $("#chartWindowDiv").css("visibility") == "visible" ) {
@@ -141,11 +140,9 @@ function loadEventHandlers() {
         $(".aoiSelect").selectpicker("val", ""); //this hack is no longer necessary when using > v1.13.x of boostrap-select
         //$(".aoiSelect").selectpicker("deselectAll"); //deselectAll was fixed in 1.13.x version of bootstrap select
         
-
-        generateRenderer();
-
         populateMetricOptions($("#groupResultsSelect")[0].selectedIndex);
         //redraw the symbols
+        generateRenderer();
 
         //return to Default AOI options for ALL AOI selects
         app.clearLayerDefObj();
