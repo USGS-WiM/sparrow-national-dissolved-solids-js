@@ -1074,7 +1074,8 @@ Mitch GH Issues Aug 28
     cursor: not-allowed;
 }
 
-.aoiSelect{
+/*re-enable if using bootstrap select 1.13.x*/
+/* .aoiSelect{
     padding:5px;
-}
+} */
 
