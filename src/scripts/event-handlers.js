@@ -140,6 +140,7 @@ function loadEventHandlers() {
         $(".aoiSelect").selectpicker("val", ""); //this hack is no longer necessary when using > v1.13.x of boostrap-select
         //$(".aoiSelect").selectpicker("deselectAll"); //deselectAll was fixed in 1.13.x version of bootstrap select
         
+    
         populateMetricOptions($("#groupResultsSelect")[0].selectedIndex);
         //redraw the symbols
         generateRenderer();
