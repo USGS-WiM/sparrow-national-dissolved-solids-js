@@ -15,14 +15,14 @@ var chartFeatureMax = 2500; //chart will not be available if more than this many
 
 var groupResultsInitIndex = 1; //sets the default layer for the application.  In this case service layer 1 == HUC8.
 
-var splitLayers = [5, 6, 7, 13, 14, 15]; //important! UPDATE layer Ids of all state split layers
+var splitLayers = [5, 6, 7, 8]; //important! UPDATE layer Ids of all state split layers
 
 var mapCenter = [-102.072432, 38.89886];
 //app.defaultMapCenter = [-87, 42];
 defaultZoomLevel = 5;
 
 borderThreshold = 10; //dynamic polygon border threshold.  When zoomed beyond this number borders appear
-var dynamicBorderLayers = ["Catchment", "HUC12", "HUC8"]; //Aggregate layer choices placed in this array will have dynamic borders.  Each string MUST MATCH the text in the Group Results By Select to work.
+var dynamicBorderLayers = ["Catchment", "HUC4", "HUC8"]; //Aggregate layer choices placed in this array will have dynamic borders.  Each string MUST MATCH the text in the Group Results By Select to work.
 
 var initQueryParams = ["ST", "GP3", "GP2", "GP1"]; //used to query for the AOI dropdown values on app init.
 

@@ -104,6 +104,8 @@ function loadEventHandlers() {
         $("#page-loader").fadeIn();
         generateRenderer();
 
+        
+
         /* if( $("#chartWindowDiv").css("visibility") == "visible" ) {
             $("#toast_title").html("Loading...");
             $("#toast_body").html("Chart updating");  
@@ -138,11 +140,10 @@ function loadEventHandlers() {
         $(".aoiSelect").selectpicker("val", ""); //this hack is no longer necessary when using > v1.13.x of boostrap-select
         //$(".aoiSelect").selectpicker("deselectAll"); //deselectAll was fixed in 1.13.x version of bootstrap select
         
-
-        generateRenderer();
-
+    
         populateMetricOptions($("#groupResultsSelect")[0].selectedIndex);
         //redraw the symbols
+        generateRenderer();
 
         //return to Default AOI options for ALL AOI selects
         app.clearLayerDefObj();
@@ -210,11 +211,9 @@ function loadEventHandlers() {
             else{
                 return false;
             }
-        }
+        } 
 
         switch ($("#groupResultsSelect")[0].selectedIndex) {
-
-
             case 0: //Catchment
                 //if no AOIs are selected don't load all the huc8 dropdowns for the sake of app performance
                 if( AOIhasValue() === false ){
