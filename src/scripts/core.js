@@ -1168,7 +1168,6 @@ require([
                                     "<div><b>SPARROW Reach ID: </b>" +
                                     responseObj.feature.attributes.REACH_NUM +
                                     "</div><br>" +
-                                    "<div><b>Fluxmaster Load " +
                                     chartUnits +
                                     ": </b>" +
                                      /*responseObj.feature.attributes.FLUXMASTER +
