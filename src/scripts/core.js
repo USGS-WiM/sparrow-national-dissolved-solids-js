@@ -1167,16 +1167,7 @@ require([
                                     "</div><br>" +
                                     "<div><b>SPARROW Reach ID: </b>" +
                                     responseObj.feature.attributes.REACH_NUM +
-                                    "</div><br>" +
-                                    chartUnits +
-                                    ": </b>" +
-                                     /*responseObj.feature.attributes.FLUXMASTER +
-                                    "</div><br>" +
-                                    "<div><b>SPARROW Estimated Load " +
-                                    chartUnits +
-                                    ": </b>" +
-                                    responseObj.feature.attributes.SPARROW_ES +*/
-                                    "</div><br>"
+                                    "</div>"
                             );
 
                             var graphic = new Graphic();
