@@ -1097,7 +1097,7 @@ require([
 
         app.identifyParams.geometry = evt.mapPoint;
         app.identifyParams.mapExtent = app.map.extent;
-        app.identifyParams.tolerance = 3;
+        app.identifyParams.tolerance = 8;
         app.identifyParams.maxAllowableOffset = 200;
 
         //Deferred callback
@@ -1152,11 +1152,11 @@ require([
                 if (response.length >= 1) {
                     $.each(response, function(index, responseObj) {
                         //UPDATE important! -- make sure that layerIds in 'if' statements below match calibration sites layers in the REST services.
-                        //Phosphorus Calibration Site InfoWindow
+                        // Calibration Site InfoWindow
                         if (responseObj.layerId === 9) {
                             var model = "Phosphorus";
                             var calibrationTemplate = new esri.InfoTemplate();
-                            calibrationTemplate.setTitle("SPARROW " + model + " Calibration Site");
+                            calibrationTemplate.setTitle("SPARROW Calibration Site");
                             //UPDATE important! make sure the field names match what is in the REST layer
                             calibrationTemplate.setContent(
                                 "<div><b>Station Name:</b> " +
@@ -1167,16 +1167,7 @@ require([
                                     "</div><br>" +
                                     "<div><b>SPARROW Reach ID: </b>" +
                                     responseObj.feature.attributes.REACH_NUM +
-                                    "</div><br>" +
-                                    chartUnits +
-                                    ": </b>" +
-                                     /*responseObj.feature.attributes.FLUXMASTER +
-                                    "</div><br>" +
-                                    "<div><b>SPARROW Estimated Load " +
-                                    chartUnits +
-                                    ": </b>" +
-                                    responseObj.feature.attributes.SPARROW_ES +*/
-                                    "</div><br>"
+                                    "</div><br>" 
                             );
 
                             var graphic = new Graphic();
@@ -1186,43 +1177,6 @@ require([
                             app.map.infoWindow.show(evt.mapPoint);
                             calibrationInfoWindow = true;
                         }
-
-                        //UPDATE important! -- make sure that layerIds in 'if' statements below match calibration sites layers in the REST services
-                        //Nitrogen Calibration Site InfoWindow
-                       /* if (responseObj.layerId === 9) {
-                            var modelN = "Nitrogen";
-                            var calibrationTemplateN = new esri.InfoTemplate();
-                            calibrationTemplateN.setTitle("SPARROW " + modelN + " Calibration Site");
-                            //UPDATE important! make sure the field names below match what is in the REST layer
-                            calibrationTemplateN.setContent(
-                                "<div><b>Station Name:</b> " +
-                                    responseObj.feature.attributes.name +
-                                    "</div><br>" +
-                                    "<div><b>Station ID:</b> </b>" +
-                                    responseObj.feature.attributes.station_id +
-                                    "</div><br>" +
-                                    "<div><b>SPARROW Reach ID: </b>" +
-                                    responseObj.feature.attributes.comid +
-                                    "</div><br>" +
-                                    "<div><b>Fluxmaster Load " +
-                                    chartUnits +
-                                    ": </b>" +
-                                    responseObj.feature.attributes.FLUXMASTER +
-                                    "</div><br>" +
-                                    "<div><b>SPARROW Estimated Load " +
-                                    chartUnits +
-                                    ": </b>" +
-                                    responseObj.feature.attributes.SPARROW_ES +
-                                    "</div><br>"
-                            ); 
-
-                            var graphic = new Graphic();
-                            var feature = graphic;
-                            responseObj.feature.setInfoTemplate(calibrationTemplateN);
-                            app.map.infoWindow.setFeatures([responseObj.feature]);
-                            app.map.infoWindow.show(evt.mapPoint);
-                            calibrationInfoWindow = true;
-                        }*/
                     });
 
                     //handle map click for Sparrow Data layer
@@ -1248,7 +1202,7 @@ require([
                         //No infoWindow, just call the chart query
                         app.createChartQuery(chartQueryArg);
                     }
-                }
+                } 
             } // end else 
         }); //END deferred callback
     }; //END executeIdentifyTask();
