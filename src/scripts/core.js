@@ -1176,11 +1176,13 @@ require([
                             app.map.infoWindow.setFeatures([responseObj.feature]);
                             app.map.infoWindow.show(evt.mapPoint);
                             calibrationInfoWindow = true;
+                            return false; //break the loop when you encounter the first calibration site
                         }
+                        
                     });
 
                     //handle map click for Sparrow Data layer
-                    if (calibrationInfoWindow = true) {
+                    if (calibrationInfoWindow != true) {
                         // highlight the first poly clicked
                         var selectedSymbol = new SimpleLineSymbol(
                             SimpleLineSymbol.STYLE_SOLID,
