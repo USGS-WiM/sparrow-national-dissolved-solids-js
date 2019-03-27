@@ -143,6 +143,31 @@ var phosphorusSourceDefinitions = {
 var phosColors = ["#BF0000", "#A2EB85", "#663100", "#FFEC99", "#FFCCFF", "#0070C0","#006800"];
 var nitroColors = ["#BF0000", "#FFCCFF", "#663100", "#FFEC99", "#A2EB85", "#00a900", "#006800", "#0070C0"];
 
+
+function getFields(sourceDefObj, mappedDefObj, definitionCode, group) {
+    var fieldsArr = [];
+    //check to make sure catchment and aggregate layer are handled appropriately by checking if group is in global aggregateDefinitions object.
+    if (!aggregateDefinitions.hasOwnProperty(group.toLowerCase())) {
+    //if (group.toLowerCase() == 'mrb_id' || group.toLowerCase() == 'st_mrb_id' || group.toLowerCase() == 'comid' || group.toLowerCase() == 'st_comid' || group.toLowerCase() == 'sparrowid' || group.toLowerCase() == 'st_sparrid') {
+        fieldsArr.push({ attribute: group.toUpperCase(), label: mappedDefObj.comid });
+        for (var key in sourceDefObj) {
+            fieldsArr.push({ attribute: definitionCode.toUpperCase() + "_" + key.toUpperCase(), label: mappedDefObj[definitionCode.toLowerCase()] + " " + sourceDefObj[key] });
+        } 
+        
+    } else {
+        fieldsArr.push({ attribute: group.toUpperCase(), label: aggregateDefinitions[group] });
+        for (var key in sourceDefObj) {
+            fieldsArr.push({ attribute: group.toUpperCase() + "_" + definitionCode.toUpperCase() + "_" + key.toUpperCase(), label: mappedDefObj[definitionCode.toLowerCase()] + " " + sourceDefObj[key] });
+        }
+    }
+    
+    
+    return fieldsArr;
+
+}
+
+
+
 /***-----BEGIN PHOSPHORUS LAYER GROUPS --------***/
 /* PHOSPHORUS CATCHMENTS */
 
@@ -151,114 +176,42 @@ var Catchments = [
     {
         field: "ACCL",
         name: catchmentDefinitions.accl,
-        chartOutfields: [
-            { attribute: "MRB_ID", label: catchmentDefinitions.comid },
-            { attribute: "ACCL_S1", label: catchmentDefinitions.accl + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "ACCL_S2", label: catchmentDefinitions.accl + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "ACCL_S3", label: catchmentDefinitions.accl + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "ACCL_S4", label: catchmentDefinitions.accl + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "ACCL_S5", label: catchmentDefinitions.accl + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "ACCL_S6", label: catchmentDefinitions.accl + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "ACCL_S7", label: catchmentDefinitions.accl + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, catchmentDefinitions, "accl", "mrb_id")
     },
     {
         field: "INCL",
         name: catchmentDefinitions.incl,
-        chartOutfields: [
-            { attribute: "MRB_ID", label: catchmentDefinitions.comid },
-            { attribute: "INCL_S1", label: catchmentDefinitions.incl + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "INCL_S2", label: catchmentDefinitions.incl + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "INCL_S3", label: catchmentDefinitions.incl + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "INCL_S4", label: catchmentDefinitions.incl + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "INCL_S5", label: catchmentDefinitions.incl + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "INCL_S6", label: catchmentDefinitions.incl + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "INCL_S7", label: catchmentDefinitions.incl + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, catchmentDefinitions, "incl", "mrb_id")
     },
     {
         field: "ACCY",
         name: catchmentDefinitions.accy,
-        chartOutfields: [
-            { attribute: "MRB_ID", label: catchmentDefinitions.comid },
-            { attribute: "ACCY_S1", label: catchmentDefinitions.accy + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "ACCY_S2", label: catchmentDefinitions.accy + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "ACCY_S3", label: catchmentDefinitions.accy + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "ACCY_S4", label: catchmentDefinitions.accy + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "ACCY_S5", label: catchmentDefinitions.accy + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "ACCY_S6", label: catchmentDefinitions.accy + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "ACCY_S7", label: catchmentDefinitions.accy + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, catchmentDefinitions, "accy", "mrb_id")
     },
     {
         field: "INCY",
         name: catchmentDefinitions.incy,
-        chartOutfields: [
-            { attribute: "MRB_ID", label: catchmentDefinitions.comid },
-            { attribute: "INCY_S1", label: catchmentDefinitions.incy + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "INCY_S2", label: catchmentDefinitions.incy + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "INCY_S3", label: catchmentDefinitions.incy + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "INCY_S4", label: catchmentDefinitions.incy + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "INCY_S5", label: catchmentDefinitions.incy + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "INCY_S6", label: catchmentDefinitions.incy + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "INCY_S7", label: catchmentDefinitions.incy + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, catchmentDefinitions, "incy", "mrb_id")
     },
     {
         field: "DACCL",
         name: catchmentDefinitions.daccl,
-        chartOutfields: [
-            { attribute: "MRB_ID", label: catchmentDefinitions.comid },
-            { attribute: "DACCL_S1", label: catchmentDefinitions.daccl + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "DACCL_S2", label: catchmentDefinitions.daccl + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "DACCL_S3", label: catchmentDefinitions.daccl + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "DACCL_S4", label: catchmentDefinitions.daccl + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "DACCL_S5", label: catchmentDefinitions.daccl + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "DACCL_S6", label: catchmentDefinitions.daccl + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "DACCL_S7", label: catchmentDefinitions.daccl + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, catchmentDefinitions, "daccl", "mrb_id")
     },
     {
         field: "DACCY",
         name: catchmentDefinitions.daccy,
-        chartOutfields: [
-            { attribute: "MRB_ID", label: catchmentDefinitions.comid },
-            { attribute: "DACCY_S1", label: catchmentDefinitions.daccy + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "DACCY_S2", label: catchmentDefinitions.daccy + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "DACCY_S3", label: catchmentDefinitions.daccy + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "DACCY_S4", label: catchmentDefinitions.daccy + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "DACCY_S5", label: catchmentDefinitions.daccy + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "DACCY_S6", label: catchmentDefinitions.daccy + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "DACCY_S7", label: catchmentDefinitions.daccy + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, catchmentDefinitions, "daccy", "mrb_id")
     },
     {
         field: "DINCL",
         name: catchmentDefinitions.dincl,
-        chartOutfields: [
-            { attribute: "MRB_ID", label: catchmentDefinitions.comid },
-            { attribute: "DINCL_S1", label: catchmentDefinitions.dincl + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "DINCL_S2", label: catchmentDefinitions.dincl + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "DINCL_S3", label: catchmentDefinitions.dincl + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "DINCL_S4", label: catchmentDefinitions.dincl + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "DINCL_S5", label: catchmentDefinitions.dincl + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "DINCL_S6", label: catchmentDefinitions.dincl + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "DINCL_S7", label: catchmentDefinitions.dincl + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, catchmentDefinitions, "dincl", "mrb_id")
     },
     {
         field: "DINCY",
         name: catchmentDefinitions.dincy,
-        chartOutfields: [
-            { attribute: "MRB_ID", label: catchmentDefinitions.comid },
-            { attribute: "DINCY_S1", label: catchmentDefinitions.dincy + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "DINCY_S2", label: catchmentDefinitions.dincy + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "DINCY_S3", label: catchmentDefinitions.dincy + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "DINCY_S4", label: catchmentDefinitions.dincy + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "DINCY_S5", label: catchmentDefinitions.dincy + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "DINCY_S6", label: catchmentDefinitions.dincy + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "DINCY_S7", label: catchmentDefinitions.dincy + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, catchmentDefinitions, "dincy", "mrb_id")
     }
 ];
 
@@ -267,58 +220,22 @@ var Group3 = [
     {
         field: "GP3_AL",
         name: mappedDefinitions.al,
-        chartOutfields: [
-            { attribute: "GP3", label: aggregateDefinitions.gp3 },
-            { attribute: "GP3_AL_S1", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "GP3_AL_S2", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "GP3_AL_S3", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "GP3_AL_S4", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "GP3_AL_S5", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "GP3_AL_S6", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "GP3_AL_S7", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, mappedDefinitions, "al", "gp3")
     },
     {
         field: "GP3_DAL",
         name: mappedDefinitions.dal,
-        chartOutfields: [
-            { attribute: "GP3", label: aggregateDefinitions.gp3 },
-            { attribute: "GP3_DAL_S1", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "GP3_DAL_S2", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "GP3_DAL_S3", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "GP3_DAL_S4", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "GP3_DAL_S5", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "GP3_DAL_S6", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "GP3_DAL_S7", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, mappedDefinitions, "dal", "gp3")
     },
     {
         field: "GP3_AY",
         name: mappedDefinitions.ay,
-        chartOutfields: [
-            { attribute: "GP3", label: aggregateDefinitions.gp3 },
-            { attribute: "GP3_AY_S1", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "GP3_AY_S2", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "GP3_AY_S3", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "GP3_AY_S4", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "GP3_AY_S5", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "GP3_AY_S6", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "GP3_AY_S7", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, mappedDefinitions, "ay", "gp3")
     },
     {
         field: "GP3_DAY",
         name: mappedDefinitions.day,
-        chartOutfields: [
-            { attribute: "GP3", label: aggregateDefinitions.gp3 },
-            { attribute: "GP3_DAY_S1", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "GP3_DAY_S2", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "GP3_DAY_S3", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "GP3_DAY_S4", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "GP3_DAY_S5", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "GP3_DAY_S6", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "GP3_DAY_S7", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, mappedDefinitions, "day", "gp3")
     }
 ];
 
@@ -327,58 +244,22 @@ var Group2 = [
     {
         field: "GP2_AL",
         name: mappedDefinitions.al,
-        chartOutfields: [
-            { attribute: "GP2", label: aggregateDefinitions.gp2 },
-            { attribute: "GP2_AL_S1", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "GP2_AL_S2", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "GP2_AL_S3", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "GP2_AL_S4", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "GP2_AL_S5", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "GP2_AL_S6", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "GP2_AL_S7", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, mappedDefinitions, "al", "gp2")
     },
     {
         field: "GP2_DAL",
         name: mappedDefinitions.dal,
-        chartOutfields: [
-            { attribute: "GP2", label: aggregateDefinitions.gp2 },
-            { attribute: "GP2_DAL_S1", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "GP2_DAL_S2", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "GP2_DAL_S3", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "GP2_DAL_S4", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "GP2_DAL_S5", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "GP2_DAL_S6", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "GP2_DAL_S7", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, mappedDefinitions, "dal", "gp2")
     },
     {
         field: "GP2_AY",
         name: mappedDefinitions.ay,
-        chartOutfields: [
-            { attribute: "GP2", label: aggregateDefinitions.gp2 },
-            { attribute: "GP2_AY_S1", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "GP2_AY_S2", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "GP2_AY_S3", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "GP2_AY_S4", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "GP2_AY_S5", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "GP2_AY_S6", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "GP2_AY_S7", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, mappedDefinitions, "ay", "gp2")
     },
     {
         field: "GP2_DAY",
         name: mappedDefinitions.day,
-        chartOutfields: [
-            { attribute: "GP2", label: aggregateDefinitions.gp2 },
-            { attribute: "GP2_DAY_S1", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "GP2_DAY_S2", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "GP2_DAY_S3", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "GP2_DAY_S4", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "GP2_DAY_S5", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "GP2_DAY_S6", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "GP2_DAY_S7", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, mappedDefinitions, "day", "gp2")
     }
 ];
 
@@ -386,58 +267,22 @@ var Group1 = [
     {
         field: "GP1_AL",
         name: mappedDefinitions.al,
-        chartOutfields: [
-            { attribute: "GP1", label: aggregateDefinitions.gp1 },
-            { attribute: "GP1_AL_S1", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "GP1_AL_S2", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "GP1_AL_S3", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "GP1_AL_S4", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "GP1_AL_S5", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "GP1_AL_S6", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "GP1_AL_S7", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, mappedDefinitions, "al", "gp1")
     },
     {
         field: "GP1_DAL",
         name: mappedDefinitions.dal,
-        chartOutfields: [
-            { attribute: "GP1", label: aggregateDefinitions.gp1 },
-            { attribute: "GP1_DAL_S1", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "GP1_DAL_S2", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "GP1_DAL_S3", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "GP1_DAL_S4", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "GP1_DAL_S5", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "GP1_DAL_S6", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "GP1_DAL_S7", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, mappedDefinitions, "dal", "gp1")
     },
     {
         field: "GP1_AY",
         name: mappedDefinitions.ay,
-        chartOutfields: [
-            { attribute: "GP1", label: aggregateDefinitions.gp1 },
-            { attribute: "GP1_AY_S1", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "GP1_AY_S2", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "GP1_AY_S3", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "GP1_AY_S4", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "GP1_AY_S5", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "GP1_AY_S6", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "GP1_AY_S7", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, mappedDefinitions, "day", "gp1")
     },
     {
         field: "GP1_DAY",
         name: mappedDefinitions.day,
-        chartOutfields: [
-            { attribute: "GP1", label: aggregateDefinitions.gp1 },
-            { attribute: "GP1_DAY_S1", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "GP1_DAY_S2", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "GP1_DAY_S3", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "GP1_DAY_S4", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "GP1_DAY_S5", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "GP1_DAY_S6", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "GP1_DAY_S7", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, mappedDefinitions, "day", "gp1")
     }
 ];
 
@@ -445,58 +290,22 @@ var ST = [
     {
         field: "ST_AL",
         name: mappedDefinitions.al,
-        chartOutfields: [
-            { attribute: "ST", label: aggregateDefinitions.st },
-            { attribute: "ST_AL_S1", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "ST_AL_S2", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "ST_AL_S3", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "ST_AL_S4", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "ST_AL_S5", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "ST_AL_S6", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "ST_AL_S7", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, mappedDefinitions, "al", "st")
     },
     {
         field: "ST_DAL",
         name: mappedDefinitions.dal,
-        chartOutfields: [
-            { attribute: "ST", label: aggregateDefinitions.st },
-            { attribute: "ST_DAL_S1", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "ST_DAL_S2", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "ST_DAL_S3", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "ST_DAL_S4", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "ST_DAL_S5", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "ST_DAL_S6", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "ST_DAL_S7", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, mappedDefinitions, "dal", "st")
     },
     {
         field: "ST_AY",
         name: mappedDefinitions.ay,
-        chartOutfields: [
-            { attribute: "ST", label: aggregateDefinitions.st },
-            { attribute: "ST_AY_S1", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "ST_AY_S2", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "ST_AY_S3", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "ST_AY_S4", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "ST_AY_S5", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "ST_AY_S6", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "ST_AY_S7", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, mappedDefinitions, "ay", "st")
     },
     {
         field: "ST_DAY",
         name: mappedDefinitions.day,
-        chartOutfields: [
-            { attribute: "ST", label: aggregateDefinitions.st },
-            { attribute: "ST_DAY_S1", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "ST_DAY_S2", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "ST_DAY_S3", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "ST_DAY_S4", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "ST_DAY_S5", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "ST_DAY_S6", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "ST_DAY_S7", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, mappedDefinitions, "day", "st")
     }
 ];
 
@@ -504,174 +313,42 @@ var Catchments_st = [
     {
         field: "ACCL",
         name: catchmentDefinitions.accl,
-        chartOutfields: [
-            { attribute: "ST_MRB_ID", label: catchmentDefinitions.st_comid },
-            { attribute: "ACCL_S1", label: catchmentDefinitions.accl + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "ACCL_S2", label: catchmentDefinitions.accl + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "ACCL_S3", label: catchmentDefinitions.accl + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "ACCL_S4", label: catchmentDefinitions.accl + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "ACCL_S5", label: catchmentDefinitions.accl + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "ACCL_S6", label: catchmentDefinitions.accl + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "ACCL_S7", label: catchmentDefinitions.accl + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, catchmentDefinitions, "accl", "st_mrb_id")
     },
     {
         field: "INCL",
         name: catchmentDefinitions.incl,
-        chartOutfields: [
-            { attribute: "ST_MRB_ID", label: catchmentDefinitions.st_comid },
-            { attribute: "INCL_S1", label: catchmentDefinitions.incl + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "INCL_S2", label: catchmentDefinitions.incl + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "INCL_S3", label: catchmentDefinitions.incl + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "INCL_S4", label: catchmentDefinitions.incl + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "INCL_S5", label: catchmentDefinitions.incl + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "INCL_S6", label: catchmentDefinitions.incl + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "INCL_S7", label: catchmentDefinitions.incl + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, catchmentDefinitions, "incl", "st_mrb_id")
     },
     {
         field: "ACCY",
         name: catchmentDefinitions.accy,
-        chartOutfields: [
-            { attribute: "ST_MRB_ID", label: catchmentDefinitions.st_comid },
-            { attribute: "ACCY_S1", label: catchmentDefinitions.accy + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "ACCY_S2", label: catchmentDefinitions.accy + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "ACCY_S3", label: catchmentDefinitions.accy + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "ACCY_S4", label: catchmentDefinitions.accy + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "ACCY_S5", label: catchmentDefinitions.accy + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "ACCY_S6", label: catchmentDefinitions.accy + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "ACCL_S7", label: catchmentDefinitions.accl + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, catchmentDefinitions, "accy", "st_mrb_id")
     },
     {
         field: "INCY",
         name: catchmentDefinitions.incy,
-        chartOutfields: [
-            { attribute: "ST_MRB_ID", label: catchmentDefinitions.st_comid },
-            { attribute: "INCY_S1", label: catchmentDefinitions.incy + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "INCY_S2", label: catchmentDefinitions.incy + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "INCY_S3", label: catchmentDefinitions.incy + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "INCY_S4", label: catchmentDefinitions.incy + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "INCY_S5", label: catchmentDefinitions.incy + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "INCY_S6", label: catchmentDefinitions.incy + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "INCY_S7", label: catchmentDefinitions.incy + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, catchmentDefinitions, "INCY", "st_mrb_id")
     },
     {
         field: "DACCL",
         name: catchmentDefinitions.daccl,
-        chartOutfields: [
-            { attribute: "ST_MRB_ID", label: catchmentDefinitions.st_comid },
-            { attribute: "DACCL_S1", label: catchmentDefinitions.daccl + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "DACCL_S2", label: catchmentDefinitions.daccl + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "DACCL_S3", label: catchmentDefinitions.daccl + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "DACCL_S4", label: catchmentDefinitions.daccl + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "DACCL_S5", label: catchmentDefinitions.daccl + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "DACCL_S6", label: catchmentDefinitions.daccl + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "DACCL_S7", label: catchmentDefinitions.daccl + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, catchmentDefinitions, "daccl", "st_mrb_id")
     },
     {
         field: "DACCY",
         name: catchmentDefinitions.daccy,
-        chartOutfields: [
-            { attribute: "ST_MRB_ID", label: catchmentDefinitions.st_comid },
-            { attribute: "DACCY_S1", label: catchmentDefinitions.daccy + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "DACCY_S2", label: catchmentDefinitions.daccy + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "DACCY_S3", label: catchmentDefinitions.daccy + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "DACCY_S4", label: catchmentDefinitions.daccy + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "DACCY_S5", label: catchmentDefinitions.daccy + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "DACCY_S6", label: catchmentDefinitions.daccy + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "DACCY_S7", label: catchmentDefinitions.daccy + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, catchmentDefinitions, "daccy", "st_mrb_id")
     },
     {
         field: "DINCL",
         name: catchmentDefinitions.dincl,
-        chartOutfields: [
-            { attribute: "ST_MRB_ID", label: catchmentDefinitions.st_comid },
-            { attribute: "DINCL_S1", label: catchmentDefinitions.dincl + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "DINCL_S2", label: catchmentDefinitions.dincl + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "DINCL_S3", label: catchmentDefinitions.dincl + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "DINCL_S4", label: catchmentDefinitions.dincl + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "DINCL_S5", label: catchmentDefinitions.dincl + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "DINCL_S6", label: catchmentDefinitions.dincl + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "DINCL_S7", label: catchmentDefinitions.dincl + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, catchmentDefinitions, "dincl", "st_mrb_id")
     },
     {
         field: "DINCY",
         name: catchmentDefinitions.dincy,
-        chartOutfields: [
-            { attribute: "ST_MRB_ID", label: catchmentDefinitions.st_comid },
-            { attribute: "DINCY_S1", label: catchmentDefinitions.dincy + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "DINCY_S2", label: catchmentDefinitions.dincy + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "DINCY_S3", label: catchmentDefinitions.dincy + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "DINCY_S4", label: catchmentDefinitions.dincy + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "DINCY_S5", label: catchmentDefinitions.dincy + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "DINCY_S6", label: catchmentDefinitions.dincy + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "DINCY_S7", label: catchmentDefinitions.dincy + " " + phosphorusSourceDefinitions.s7 }
-        ]
-    }
-];
-
-//HUC8 Metric choices, service Id 1
-var Group3 = [
-    {
-        field: "GP3_AL",
-        name: mappedDefinitions.al,
-        chartOutfields: [
-            { attribute: "GP3", label: aggregateDefinitions.gp3 },
-            { attribute: "GP3_AL_S1", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "GP3_AL_S2", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "GP3_AL_S3", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "GP3_AL_S4", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "GP3_AL_S5", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "GP3_AL_S6", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "GP3_AL_S7", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s7 }
-        ]
-    },
-    {
-        field: "GP3_DAL",
-        name: mappedDefinitions.dal,
-        chartOutfields: [
-            { attribute: "GP3", label: aggregateDefinitions.gp3 },
-            { attribute: "GP3_DAL_S1", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "GP3_DAL_S2", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "GP3_DAL_S3", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "GP3_DAL_S4", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "GP3_DAL_S5", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "GP3_DAL_S6", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "GP3_DAL_S7", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s7 }
-        ]
-    },
-    {
-        field: "GP3_AY",
-        name: mappedDefinitions.ay,
-        chartOutfields: [
-            { attribute: "GP3", label: aggregateDefinitions.gp3 },
-            { attribute: "GP3_AY_S1", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "GP3_AY_S2", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "GP3_AY_S3", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "GP3_AY_S4", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "GP3_AY_S5", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "GP3_AY_S6", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "GP3_AY_S7", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s7 }
-        ]
-    },
-    {
-        field: "GP3_DAY",
-        name: mappedDefinitions.day,
-        chartOutfields: [
-            { attribute: "GP3", label: aggregateDefinitions.gp3 },
-            { attribute: "GP3_DAY_S1", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "GP3_DAY_S2", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "GP3_DAY_S3", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "GP3_DAY_S4", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "GP3_DAY_S5", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "GP3_DAY_S6", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "GP3_DAY_S7", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, catchmentDefinitions, "dincy", "st_mrb_id")
     }
 ];
 
@@ -679,58 +356,22 @@ var Group3_st = [
     {
         field: "SG3_AL",
         name: mappedDefinitions.al,
-        chartOutfields: [
-            { attribute: "SG3", label: aggregateDefinitions.sg3 },
-            { attribute: "SG3_AL_S1", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "SG3_AL_S2", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "SG3_AL_S3", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "SG3_AL_S4", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "SG3_AL_S5", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "SG3_AL_S6", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "SG3_AL_S7", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, mappedDefinitions, "al", "sg3")
     },
     {
         field: "SG3_DAL",
         name: mappedDefinitions.dal,
-        chartOutfields: [
-            { attribute: "SG3", label: aggregateDefinitions.sg3 },
-            { attribute: "SG3_DAL_S1", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "SG3_DAL_S2", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "SG3_DAL_S3", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "SG3_DAL_S4", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "SG3_DAL_S5", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "SG3_DAL_S6", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "SG3_DAL_S7", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, mappedDefinitions, "dal", "sg3")
     },
     {
         field: "SG3_AY",
         name: mappedDefinitions.ay,
-        chartOutfields: [
-            { attribute: "SG3", label: aggregateDefinitions.sg3 },
-            { attribute: "SG3_AY_S1", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "SG3_AY_S2", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "SG3_AY_S3", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "SG3_AY_S4", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "SG3_AY_S5", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "SG3_AY_S6", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "SG3_AY_S7", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, mappedDefinitions, "ay", "sg3")
     },
     {
         field: "SG3_DAY",
         name: mappedDefinitions.day,
-        chartOutfields: [
-            { attribute: "SG3", label: aggregateDefinitions.sg3 },
-            { attribute: "SG3_DAY_S1", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "SG3_DAY_S2", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "SG3_DAY_S3", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "SG3_DAY_S4", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "SG3_DAY_S5", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "SG3_DAY_S6", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "SG3_DAY_S7", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, mappedDefinitions, "day", "sg3")
     }
 ];
 
@@ -738,58 +379,22 @@ var Group2_st = [
     {
         field: "SG2_AL",
         name: mappedDefinitions.al,
-        chartOutfields: [
-            { attribute: "SG2", label: aggregateDefinitions.sg2 },
-            { attribute: "SG2_AL_S1", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "SG2_AL_S2", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "SG2_AL_S3", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "SG2_AL_S4", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "SG2_AL_S5", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "SG2_AL_S6", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "SG2_AL_S7", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, mappedDefinitions, "al", "sg2")
     },
     {
         field: "SG2_DAL",
         name: mappedDefinitions.dal,
-        chartOutfields: [
-            { attribute: "SG2", label: aggregateDefinitions.sg2 },
-            { attribute: "SG2_DAL_S1", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "SG2_DAL_S2", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "SG2_DAL_S3", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "SG2_DAL_S4", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "SG2_DAL_S5", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "SG2_DAL_S6", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "SG2_DAL_S7", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, mappedDefinitions, "dal", "sg2")
     },
     {
         field: "SG2_AY",
         name: mappedDefinitions.ay,
-        chartOutfields: [
-            { attribute: "SG2", label: aggregateDefinitions.sg2 },
-            { attribute: "SG2_AY_S1", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "SG2_AY_S2", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "SG2_AY_S3", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "SG2_AY_S4", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "SG2_AY_S5", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "SG2_AY_S6", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "SG2_AY_S7", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, mappedDefinitions, "ay", "sg2")
     },
     {
         field: "SG2_DAY",
         name: mappedDefinitions.day,
-        chartOutfields: [
-            { attribute: "SG2", label: aggregateDefinitions.sg2 },
-            { attribute: "SG2_DAY_S1", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "SG2_DAY_S2", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "SG2_DAY_S3", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "SG2_DAY_S4", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "SG2_DAY_S5", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "SG2_DAY_S6", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "SG2_DAY_S7", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, mappedDefinitions, "day", "sg2")
     }
 ];
 
@@ -797,58 +402,22 @@ var Group1_st = [
     {
         field: "SG1_AL",
         name: mappedDefinitions.al,
-        chartOutfields: [
-            { attribute: "SG1", label: aggregateDefinitions.sg1 },
-            { attribute: "SG1_AL_S1", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "SG1_AL_S2", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "SG1_AL_S3", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "SG1_AL_S4", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "SG1_AL_S5", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "SG1_AL_S6", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "SG1_AL_S7", label: mappedDefinitions.al + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, mappedDefinitions, "al", "sg1")
     },
     {
         field: "SG1_DAL",
         name: mappedDefinitions.dal,
-        chartOutfields: [
-            { attribute: "SG1", label: aggregateDefinitions.sg1 },
-            { attribute: "SG1_DAL_S1", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "SG1_DAL_S2", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "SG1_DAL_S3", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "SG1_DAL_S4", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "SG1_DAL_S5", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "SG1_DAL_S6", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "SG1_DAL_S7", label: mappedDefinitions.dal + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, mappedDefinitions, "dal", "sg1")
     },
     {
         field: "SG1_AY",
         name: mappedDefinitions.ay,
-        chartOutfields: [
-            { attribute: "SG1", label: aggregateDefinitions.sg1 },
-            { attribute: "SG1_AY_S1", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "SG1_AY_S2", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "SG1_AY_S3", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "SG1_AY_S4", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "SG1_AY_S5", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "SG1_AY_S6", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "SG1_AY_S7", label: mappedDefinitions.ay + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, mappedDefinitions, "ay", "sg1")
     },
     {
         field: "SG1_DAY",
         name: mappedDefinitions.day,
-        chartOutfields: [
-            { attribute: "SG1", label: aggregateDefinitions.sg1 },
-            { attribute: "SG1_DAY_S1", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s1 },
-            { attribute: "SG1_DAY_S2", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s2 },
-            { attribute: "SG1_DAY_S3", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s3 },
-            { attribute: "SG1_DAY_S4", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s4 },
-            { attribute: "SG1_DAY_S5", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s5 },
-            { attribute: "SG1_DAY_S6", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s6 },
-            { attribute: "SG1_DAY_S7", label: mappedDefinitions.day + " " + phosphorusSourceDefinitions.s7 }
-        ]
+        chartOutfields: getFields(phosphorusSourceDefinitions, mappedDefinitions, "day", "sg1")
     }
 ];
 ////END PHOSPHORUS LAYER GROUPS______________________________________________________________________________________________________________________________
