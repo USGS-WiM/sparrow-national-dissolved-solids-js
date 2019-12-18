@@ -221,27 +221,27 @@
                         <div role="tabpanel" class="tab-pane" id="contactTabPane">
                             <br/>
 
-                            <h4 style="margin: 0; padding: 0;">Stephen Preston</h4>
+                            <h4 style="margin: 0; padding: 0;">David Saad</h4>
                             <p class="p-light fullwidth">
                                 <b>Hydrologist</b>
-                                <br/> 302-734-2506, ext. 230
+                                <br/> 608-821-3865
                                 <br/>
-                                <a href="mailto:spreston@usgs.gov">spreston@usgs.gov</a>
+                                <a href="mailto:dasaad@usgs.gov">dasaad@usgs.gov</a>
                                 <br/>
-                                <a href="https://www.usgs.gov/staff-profiles/stephen-d-preston" target="blank">https://www.usgs.gov/staff-profiles/stephen-d-preston</a>
+                                <a href="https://www.usgs.gov/staff-profiles/david-a-saad" target="blank">https://www.usgs.gov/staff-profiles/david-a-saad</a>
                             </p>
 
                             <hr/>
 
-                            <h4 style="margin: 0; padding: 0;">USGS Water Resources Mission Area</h4>
+                            <h4 style="margin: 0; padding: 0;">USGS Upper Midwest Water Science Center</h4>
                             <p class="p-light fullwidth">
                                 <b>
-                                    1289 McD Drive
-                                    <br/> Dover, DE 19901
+                                    8505 Research Way
+                                    <br/> Middleton, WI 53562
                                 </b>
                                 <br/>
-                                <a href="https://www.usgs.gov/water-resources/national-water-quality-program?qt-programs_l2_landing_page=0#qt-programs_l2_landing_page"
-                                    target="blank">https://www.usgs.gov/water-resources/national-water-quality-program?qt-programs_l2_landing_page=0#qt-programs_l2_landing_page</a>
+                                <a href="https://www.usgs.gov/centers/wisconsin-water-science-center"
+                                    target="blank">https://www.usgs.gov/centers/wisconsin-water-science-center</a>
                             </p>
 
                         </div>
@@ -254,7 +254,9 @@
                                 reach that reflects only those sources contributed from within the incremental drainage area
                                 of that reach. The incremental load value includes the effects of in-stream attenuation processes
                                 associated with one half of the incremental reach length. Incremental drainage areas are
-                                represented here as “catchments”.
+                                represented here as “catchments”.  For the purposes of mapping, all lithology source variables were aggregated
+                                 into a single source variable, called lithology,with the exception of water 
+                                 (submerged lithologies).
                             </p>
                             <p class="p-meta p-light fullwidth">
                                 <b>Accumulated Load (often referred to as "Total Load")</b>
@@ -788,8 +790,10 @@
                             <select id="grp1-select" class="selectpicker 1 aoiSelect" title="HUC2" data-size="10" data-width="100%"></select>
 
                             <select id="grp2-select" class="selectpicker 2 aoiSelect" data-live-search="true" title="HUC4" data-size="10" data-width="100%"></select>
-
-                            <select id="grp3-select" class="selectpicker 3 aoiSelect" data-live-search="true" title="HUC8" data-size="10" data-width="100%"></select>
+                            
+                            <span id='grp3-select-wrapper' title="Huc2 or Huc4 must be selected before choosing Huc8">
+                                <select id="grp3-select" class="selectpicker 3 aoiSelect" data-live-search="true" title="HUC8" data-size="10" data-width="100%" ></select>
+                            </span>
 
                             <button type="button" class="btn-blue" id="clearAOIButton"> <span class="glyphicon glyphicon-remove">
                                 </span> Clear Area of Interest

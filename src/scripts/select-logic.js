@@ -315,15 +315,7 @@ function setLayerDefs() {
     layerDefs[7] = definitionString;
     layerDefs[8] = definitionString;
 
-    layerDefs[9] = definitionString;
-    layerDefs[10] = definitionString;
-    layerDefs[11] = definitionString;
-    layerDefs[12] = definitionString;
-    layerDefs[13] = definitionString;
-    layerDefs[14] = definitionString;
-    layerDefs[15] = definitionString;
-    layerDefs[16] = definitionString;
-    layerDefs[17] = definitionString;
+
 
     app.map.getLayer("SparrowRanking").setLayerDefinitions(layerDefs);
 } // END setLayerDefs()
