@@ -1167,7 +1167,9 @@ require([
                                     "</div><br>" +
                                     "<div><b>SPARROW Reach ID: </b>" +
                                     responseObj.feature.attributes.REACH_NUM +
-                                    "</div><br>" 
+
+                                    "</div>"
+
                             );
 
                             var graphic = new Graphic();
